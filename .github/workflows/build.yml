@@ -87,7 +87,7 @@ jobs:
           GITHUB_WORKSPACE: ${{ github.workspace }}
       - name: Annotate Rat errors
         # Avoid duplicate annotations, only run on java 21
-        if: ${{ failure() && matrix.java == '21' }}
+        if: ${{ matrix.java == '21' }}
         run: python .github/scripts/rat.py
         env:
           GITHUB_WORKSPACE: ${{ github.workspace }}
