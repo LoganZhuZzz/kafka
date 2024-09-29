@@ -64,11 +64,10 @@ jobs:
         # --info:                   For now, we'll generate lots of logs while setting up the GH Actions
         # --scan:                   Publish the build scan. This will only work on PRs from apache/kafka and trunk
         # --no-scan:                For public fork PRs, we won't attempt to publish the scan
-        # -PignoreRatFailure=true:  Ignore failures from the Rat plugin
         run: |
           ./gradlew --build-cache --info  \
           ${{ inputs.is-public-fork && '--no-scan' || '--scan' }} \
-          -PignoreRatFailure=true  \
+          -PignoreRatFailure=false  \
           check -x test
       - name: Archive check reports
         if: always()
@@ -87,7 +86,7 @@ jobs:
           GITHUB_WORKSPACE: ${{ github.workspace }}
       - name: Annotate Rat errors
         # Avoid duplicate annotations, only run on java 21
-        if: ${{ matrix.java == '21' }}
+        if: ${{ failure() && matrix.java == '21' }}
         run: python .github/scripts/rat.py
         env:
           GITHUB_WORKSPACE: ${{ github.workspace }}
