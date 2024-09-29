@@ -19,6 +19,7 @@ on:
   push:
     branches:
       - 'trunk'
+      - 'git-workflow-test'
 
   pull_request:
     types: [ opened, synchronize, reopened ]
