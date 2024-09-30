@@ -87,8 +87,7 @@ if __name__ == "__main__":
         print("Files with unapproved licenses:")
         for file in all_unapproved_files:
             rel_path = os.path.relpath(file, workspace_path)
-            title = "Unapproved License"
-            message = f"File with unapproved license"
-            print(f"::notice file={rel_path},title={title}::{message}")
+            message = f"File with unapproved license: {rel_path}"
+            print(f"::notice file={rel_path},title=Unapproved License::{message}")
 
         exit(1)
