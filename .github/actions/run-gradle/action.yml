@@ -16,8 +16,8 @@
 # under the License.
 #
 ---
-name: "Gradle Setup"
-description: "Setup Java and Gradle"
+name: "Gradle Test Setup"
+description: "Setup Java and Gradle, then run the specified test suite."
 inputs:
   # Composite actions do not support typed parameters. Everything is treated as a string
   # See: https://github.com/actions/runner/issues/2238
