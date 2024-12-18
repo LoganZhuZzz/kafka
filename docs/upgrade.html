@@ -190,6 +190,12 @@
                             <code>DEAD</code> if the group ID was not found. In Apache Kafka 4.0, the <code>GroupIdNotFoundException</code>
                             is thrown instead as part of the support for new types of group.
                         </li>
+                        <li>The constructor <code>org.apache.kafka.clients.admin.FeatureUpdate</code> with short and boolean arguments was removed.
+                            Please use the constructor that accepts short and the specified UpgradeType enum instead.
+                        </li>
+                        <li>
+                            The <code>allowDowngrade</code> method was removed from the <code>org.apache.kafka.clients.admin.FeatureUpdate</code>.
+                        </li>
                     </ul>
                 </li>
             </ul>
