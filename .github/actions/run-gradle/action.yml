@@ -16,7 +16,7 @@
 # under the License.
 #
 ---
-name: "Run Gradle Tests"
+name: "Run Tests with Gradle"
 description: "Run specified Gradle test tasks with configuration for timeout and test catalog."
 inputs:
   # Composite actions do not support typed parameters. Everything is treated as a string
