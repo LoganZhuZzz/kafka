@@ -49,14 +49,11 @@ trait AutoTopicCreationManager {
 
 class DefaultAutoTopicCreationManager(
   config: KafkaConfig,
-  channelManager: Option[NodeToControllerChannelManager],
+  channelManager: NodeToControllerChannelManager,
   groupCoordinator: GroupCoordinator,
   txnCoordinator: TransactionCoordinator,
   shareCoordinator: Option[ShareCoordinator]
 ) extends AutoTopicCreationManager with Logging {
-  if (channelManager.isEmpty) {
-    throw new IllegalArgumentException("Must supply a channel manager for auto topic creation")
-  }
 
   private val inflightTopics = Collections.newSetFromMap(new ConcurrentHashMap[String, java.lang.Boolean]())
 
@@ -115,10 +112,6 @@ class DefaultAutoTopicCreationManager(
           debug(s"Auto topic creation completed for ${creatableTopics.keys} with response ${response.responseBody}.")
         }
       }
-    }
-
-    val channelManager = this.channelManager.getOrElse {
-      throw new IllegalStateException("Channel manager must be defined in order to send CreateTopic requests.")
     }
 
     val request = metadataRequestContext.map { context =>
